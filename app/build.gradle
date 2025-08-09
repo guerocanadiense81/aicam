@@ -22,7 +22,6 @@ android {
   }
   kotlinOptions { jvmTarget = '17' }
 
-  // Predictable CI builds
   packagingOptions {
     resources { excludes += ["/META-INF/{AL2.0,LGPL2.1}"] }
   }
@@ -38,7 +37,7 @@ android {
     }
   }
 
-  // Optional: deterministic APK names (helps find artifacts)
+  // Deterministic APK names (helps find artifacts)
   applicationVariants.all { variant ->
     variant.outputs.all { output ->
       def fileBase = "${defaultConfig.applicationId}-${variant.name}-${defaultConfig.versionName}"
