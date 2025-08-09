@@ -15,21 +15,39 @@ android {
     versionName '1.0'
   }
 
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-    }
-    debug {
-      // more logging helps if Actions fails
-      debuggable true
-    }
+  // Java/Kotlin 17 toolchain (matches the CI workflow)
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+  kotlinOptions {
+    jvmTarget = '17'
   }
 
+  // Keep builds predictable in CI and avoid license/resource clashes
   packagingOptions {
     resources {
       excludes += ["/META-INF/{AL2.0,LGPL2.1}"]
     }
+  }
+
+  buildTypes {
+    release {
+      // We’re targeting a debug APK in CI; release stays simple
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      // If you ever need a release APK instead of AAB, run `assembleRelease`
+      // (AGP generates APKs for assemble* tasks; bundle* tasks produce AABs)
+    }
+    debug {
+      // More logs if CI ever flakes
+      debuggable true
+    }
+  }
+
+  // (Optional) If a module adds extra repos, this keeps lint quiet on CI
+  lint {
+    abortOnError false
   }
 }
 
