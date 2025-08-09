@@ -1,20 +1,24 @@
 pluginManagement {
   repositories {
-    gradlePluginPortal()
-    google()
+    // Keep order: mavenCentral first, then Google, then Gradle Portal
     mavenCentral()
+    google()
+    gradlePluginPortal()
   }
   plugins {
     id("com.android.application") version "8.2.2"
     id("org.jetbrains.kotlin.android") version "1.9.22"
   }
 }
+
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {
-    google()
+    // Only these two, stable and mirrored widely
     mavenCentral()
+    google()
   }
 }
+
 rootProject.name = "AiCam"
 include(":app")
