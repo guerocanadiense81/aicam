@@ -1,3 +1,1 @@
-buildscript {
-  // No extra classpath needed; using plugins DSL
-}
+// Empty on purpose – we use the plugins DSL from settings.gradle
