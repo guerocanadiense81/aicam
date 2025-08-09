@@ -25,33 +25,37 @@ jobs:
           yes | sdkmanager --licenses
           sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
 
-      # Force all projects to use mavenCentral + google, in case any module adds others.
-      - name: Add Gradle init script (lock repos)
+      - name: Add Gradle init (lock repos)
         run: |
           cat > init-ci.gradle <<'EOF'
-          allprojects {
-            repositories {
-              mavenCentral()
-              google()
-            }
-          }
+          allprojects { repositories { mavenCentral(); google() } }
           EOF
 
-      # Retry Gradle up to 3 times to ride out transient CDN hiccups
-      - name: Build Debug APK (with retry)
+      - name: Build Debug (retry 3x)
         run: |
           set -e
           for i in 1 2 3; do
             echo "Attempt $i..."
-            ./gradlew -I init-ci.gradle --no-daemon --stacktrace --info assembleDebug && break || {
-              echo "Gradle failed on attempt $i, sleeping then retrying..."
-              sleep 20
+            ./gradlew -I init-ci.gradle --no-daemon --stacktrace assembleDebug && break || {
+              echo "Gradle failed on attempt $i, retrying..."; sleep 20;
             }
           done
-        shell: bash
 
-      - name: Upload APK
+      # Upload any APKs (debug/release) and any AABs if they ever get produced
+      - name: Upload APKs
         uses: actions/upload-artifact@v4
         with:
-          name: AiCam-debug-apk
+          name: AiCam-apks
+          path: |
+            app/build/outputs/**/*.apk
+          if-no-files-found: warn
+
+      - name: Upload AABs (optional)
+        uses: actions/upload-artifact@v4
+        with:
+          name: AiCam-aabs
+          path: |
+            app/build/outputs/**/*.aab
+          if-no-files-found: warn
+
           path: app/build/outputs/apk/debug/*.apk
