@@ -15,14 +15,14 @@ android {
     versionName '1.0'
   }
 
-  // Java/Kotlin 17 to match the CI JDK
+  // Java/Kotlin 17 toolchain (matches CI JDK)
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_17
     targetCompatibility JavaVersion.VERSION_17
   }
   kotlinOptions { jvmTarget = '17' }
 
-  // predictable CI builds
+  // Predictable CI builds
   packagingOptions {
     resources { excludes += ["/META-INF/{AL2.0,LGPL2.1}"] }
   }
@@ -38,7 +38,7 @@ android {
     }
   }
 
-  // Optional: give APKs deterministic names (still uploaded via glob)
+  // Optional: deterministic APK names (helps find artifacts)
   applicationVariants.all { variant ->
     variant.outputs.all { output ->
       def fileBase = "${defaultConfig.applicationId}-${variant.name}-${defaultConfig.versionName}"
