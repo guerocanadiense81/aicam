@@ -1,0 +1,11 @@
+[Unit]
+Description=Luckfox Camera API
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/uvicorn api:app --host 0.0.0.0 --port 8080
+WorkingDirectory=/opt/cam
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

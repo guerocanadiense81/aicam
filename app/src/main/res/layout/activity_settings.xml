@@ -1,0 +1,22 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent" android:layout_height="match_parent">
+  <LinearLayout android:orientation="vertical" android:padding="16dp"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+    <EditText android:id="@+id/et_api" android:hint="API base (http://<CAM_IP>:8080/)"
+      android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <EditText android:id="@+id/et_rtsp" android:hint="RTSP (rtsp://<CAM_IP>/live/main)"
+      android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <TextView android:id="@+id/tv_thr" android:text="0.45"
+      android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    <SeekBar android:id="@+id/sb_thr" android:max="100" android:progress="45"
+      android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <EditText android:id="@+id/et_fps" android:hint="FPS (20)"
+      android:inputType="number" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <EditText android:id="@+id/et_res" android:hint="Resolution (1280x720)"
+      android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <EditText android:id="@+id/et_cooldown" android:hint="Cooldown seconds (15)"
+      android:inputType="number" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <Button android:id="@+id/btn_save" android:text="Save"
+      android:layout_width="match_parent" android:layout_height="wrap_content"/>
+  </LinearLayout>
+</ScrollView>

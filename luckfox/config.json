@@ -1,0 +1,7 @@
+{
+  "rtsp": "rtsp://<CAM_IP>/live/main",
+  "res": "1280x720",
+  "fps": 20,
+  "threshold": 0.45,
+  "cooldown": 15
+}

@@ -1,0 +1,12 @@
+[Unit]
+Description=Luckfox AI Person Detect
+After=network-online.target rkipc.service cam-api.service
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/cam/ai_detect.py
+WorkingDirectory=/opt/cam
+Restart=always
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

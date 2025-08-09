@@ -1,0 +1,7 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical" android:padding="24dp"
+  android:layout_width="match_parent" android:layout_height="match_parent">
+  <Button android:id="@+id/btn_live" android:text="Live" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+  <Button android:id="@+id/btn_alerts" android:text="Alerts" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+  <Button android:id="@+id/btn_settings" android:text="Settings" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+</LinearLayout>

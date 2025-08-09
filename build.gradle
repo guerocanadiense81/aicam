@@ -1,0 +1,3 @@
+buildscript {
+  // No extra classpath needed; using plugins DSL
+}
