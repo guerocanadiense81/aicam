@@ -20,6 +20,16 @@ android {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
+    debug {
+      // more logging helps if Actions fails
+      debuggable true
+    }
+  }
+
+  packagingOptions {
+    resources {
+      excludes += ["/META-INF/{AL2.0,LGPL2.1}"]
+    }
   }
 }
 
